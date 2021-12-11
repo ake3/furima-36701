@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :name, :explanation, :selling_price, presence: true
+  validates :image, :name, :explanation, :selling_price, presence: true
   validates :selling_price, 
             format: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters' },
             inclusion: { in: 300..9999999, message: 'is out of setting range' }
