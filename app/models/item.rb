@@ -1,12 +1,13 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category
-  belongs_to :status
-  belongs_to :shipping_cost
-  belongs_to :prefecture
-  belongs_to :shipping_date
-  belongs_to :user
+  belongs_to       :category
+  belongs_to       :status
+  belongs_to       :shipping_cost
+  belongs_to       :prefecture
+  belongs_to       :shipping_date
+  belongs_to       :user
   has_one_attached :image
+  has_one          :order
 
   validates :image, :name, :explanation, :selling_price, presence: true
   validates :selling_price, numericality: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters' },
