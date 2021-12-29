@@ -4,6 +4,11 @@ class OrdersController < ApplicationController
 
   def index
     @order_shipping_address = OrderShippingAddress.new
+    if @item.user_id == current_user.id
+      redirect_to root_path  
+    elsif Order.exists?(item_id: @item.id)
+      redirect_to root_path 
+    end  
   end
 
   def create
