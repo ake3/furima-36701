@@ -29,17 +29,20 @@ RSpec.describe ShippingAddress, type: :model do
       it 'postal_codeが空では保存できない' do
         @order_shipping_address.postal_code = ''
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@order_shipping_address.errors.full_messages)
+          .to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it 'postal_codeが3桁ハイフン4桁の形式でなければ保存できない' do
         @order_shipping_address.postal_code = '1231234'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@order_shipping_address.errors.full_messages)
+          .to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it 'postal_codeが全角では保存できない' do
         @order_shipping_address.postal_code = '１２３ー１２３４'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@order_shipping_address.errors.full_messages)
+          .to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it 'cityが空では保存できない' do
         @order_shipping_address.city = ''
@@ -59,17 +62,20 @@ RSpec.describe ShippingAddress, type: :model do
       it 'phone_numberが全角では保存できない' do
         @order_shipping_address.phone_number = '０９０１２３４５６７８'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid. Enter it as follows (e.g. 09012345678)")
+        expect(@order_shipping_address.errors.full_messages)
+          .to include('Phone number is invalid. Enter it as follows (e.g. 09012345678)')
       end
       it 'phone_numberが数値以外では保存できない' do
         @order_shipping_address.phone_number = '090-1234-5678'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid. Enter it as follows (e.g. 09012345678)")
+        expect(@order_shipping_address.errors.full_messages)
+          .to include('Phone number is invalid. Enter it as follows (e.g. 09012345678)')
       end
       it 'phone_numberが10桁以上11桁以内でなければ保存できない' do
         @order_shipping_address.phone_number = '0901234'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid. Enter it as follows (e.g. 09012345678)")
+        expect(@order_shipping_address.errors.full_messages)
+          .to include('Phone number is invalid. Enter it as follows (e.g. 09012345678)')
       end
       it 'prefecture_idが1(---)では保存できない' do
         @order_shipping_address.prefecture_id = '1'
