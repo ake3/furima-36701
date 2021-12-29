@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
 
   def edit
     redirect_to root_path unless @item.user_id == current_user.id
+    redirect_to root_path if Order.exists?(item_id: @item.id)
   end
 
   def update
@@ -43,8 +44,9 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :image, :explanation, :category_id, :status_id, :shipping_cost_id, :prefecture_id,
-                                 :shipping_date_id, :selling_price).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :image, :explanation, :category_id,
+                                 :status_id, :shipping_cost_id, :prefecture_id, :shipping_date_id,
+                                 :selling_price).merge(user_id: current_user.id)
   end
 
   def set_item
